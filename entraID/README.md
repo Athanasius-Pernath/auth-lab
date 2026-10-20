@@ -1,5 +1,5 @@
 Instructions for using EntraID as Identity and Authentication Management service
-
+Documentation/Specififcation: [Entra_ID resources](entra-resources.md)
 .0 Requirements
 ---------------
 
@@ -42,7 +42,7 @@ Create server.js with routes:
     /auth/callback (handles redirect with code/state)
     /me (shows basic info)
 
-You should generate and store:
+Should generate and store:
 
     state (random, stored temporarily in a cookie or session)
     code_verifier only if using PKCE (optional for week 1)
@@ -66,9 +66,13 @@ Use Microsoft endpoints derived from:
 -
 - Use Burp or ZAP to intercept requests in browser
 - console.log the request and response between /auth/callback and entraId
-- Check the fields of the JWT according to spec www.jwt.io/introduction#how-json-web-tokens-work (may vary for microsoft)
+- Check the fields of the JWT according to spec https://datatracker.ietf.org/doc/html/rfc7519#section-4.1 (may vary for microsoft)
+- can the scope parameter in the request be modified during the auth callback <-> entraID communcation
 
 X. TODOS
 -
 - Alternative to secret + .env combo: 1. Do PKCE instead of client secret 2. do encrypted env if node module exist or make it (dotenvx?)
 - verify jwt token signature in server.json
+- list cves for EntraID
+- set up MFA for an application as conditional access
+- make diagrams for: Password Hash sync? / ldap
