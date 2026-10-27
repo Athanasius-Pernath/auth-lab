@@ -42,7 +42,7 @@ app.get('/auth/callback', async (req, res) => {
     return res.status(400).send('Invalid state — possible CSRF, or the cookie expired. Try /login again.');
   }
   res.clearCookie('oauth_state');
-
+  console.log("Received req from entraID redirect:\n %s", req)
   try {
     const body = new URLSearchParams({
       client_id: CLIENT_ID,
@@ -51,11 +51,11 @@ app.get('/auth/callback', async (req, res) => {
       code,
       redirect_uri: REDIRECT_URI,
     });
-    console.log( body );
+    console.log( "Building request to entraID for bearer token:\n %s", body );
     const { data } = await axios.post(TOKEN_URL, body, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     });
-    console.log( data );
+    console.log( "Received response from entraID:\n %s", data );
     res.cookie('id_token', data.id_token, { httpOnly: true });
     res.redirect('/me');
   } catch (err) {

@@ -22,7 +22,7 @@ Can be associated to multiple directories (instances of EntraID).
 3 Types (sources) of users
 - ***Cloud Identities***, Source: (external) Microsoft Entra ID. External if defined in another Directory
 - ***Directory-synchronized Identities***, Source: Windows AD Server. Users that exist in an on-prem Active Directory. Sync tools like Microsoft Entra Connect lets these users in to Azure. [Migration](#Migration)
-- ***Guest Users***, Source: Invited User. Users from other Cloud providers or Microsoft accounts (e.g. XBOX Live) - invited via Microsoft Entra B2B (Accounts are managed in the same Tenant/Directory). B2C to allow external users to self-register. These users are stored in a separate B2C directory.
+- ***Guest Users***, Source: Invited User. Users from other Cloud providers or Microsoft accounts (e.g. XBOX Live) - invited via Microsoft Entra B2B (Accounts are managed in the same Tenant/Directory). B2C (CIAM) to allow external users to self-register. These users are stored in a separate B2C directory.
 ###### Adding Users options
 1. Syncinc on-prem AD to Entra ID
 2. Via Azure Portal or Entra ID Admin center
@@ -72,8 +72,6 @@ Get-AzRoleDefinition Owner
 ```
 [More about RBAC][https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/]
 
-
-
 ## Questions
 Is there a distinction for an identity (entra id user) between a user ie. person and a device
 
@@ -92,7 +90,7 @@ requires a local Windows Server with Database and several staging server configu
 computation happens in Microsofts cloud, uses only a slim Agent on-prem. Two or more on-prem networks do not have to be connected to each other to be synced.
 
 **Entra ID Domain service** 
-allows to add virtual machines to a domain that can be accessed  by the using the entra id login.
+allows to add virtual machines to a domain that can be accessed by using the entra id login.
 Can be used to migrate on-premise apps to the cloud. Eliminates the need for a domain controller (server running AD DS, ie. local Entra). (In addition use Sync to embedd on-prem identities into the cloud). 
 Still allows Cloud apps to use Kerberos authentication (even if no on-prem Kerberos server exists).
 
@@ -169,3 +167,7 @@ Check admin access reviews, user lifecycle via automated provision or dynamic gr
 
 **Zero Trust**: always require authentication (e.g. even when device is in company network etc.) [Increase Visibility for Zero Trust][https://learn.microsoft.com/en-us/security/zero-trust/deploy/visibility-automation-orchestration] with Microsoft Defender XDR and Microsoft Sentinel (SIEM with AI)
 **AD DS** 
+
+## Alternatives
+- auth0: cloud-based IAM Solution with MFA and SSO (AD,LDAP,ADFS,SAML,+custom built by devs): Developer-oriented Free up to 25.000 Monthly active users.
+- Okta (Enterprise Grade): uses modular components (platform services). Allows adaptive MFA based on risk factors. Fastpass (passwordless) using biometrics, OTP, socials login, email-based magic links (like claude)

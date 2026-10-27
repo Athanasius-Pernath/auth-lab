@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/documentation.css">
+    <title>Technical Documentation</title>
+</head>
+
+<body>
+
+    <main>
+
+        <h1>Authentication Flow</h1>
+
+        <p>
+            Interactive documentation of the authentication
+            process between the browser, Web-app, and
+            Microsoft Entra ID.
+        </p>
+        <section class="diagram-section">
+
+          <h2>Authentication Architecture</h2>
+
+          <div class="diagram-viewport" id="diagram-container">
+            <!-- Our SVG diagram will go here -->
+            <object
+              id="diagram"
+              type="image/svg+xml"
+              data="diagrams/Auth-flow-diagram-base.drawio.svg"
+              width="100%"
+              height="100%">
+            </object>
+          </div>
+      <div class="diagram-toolbar">
+
+      <button id="previous-btn" type="button">
+       ◀ Previous
+      </button>
+
+      <button id="next-btn" type="button">
+        Next ▶
+      </button>
+
+      <button id="show-all-btn" type="button">
+        Show All
+      </button>
+
+    </div>
+
+        </section>
+
+    </main>
+<script src="js/diagram-navigation.js"></script>
+</body>
+
+</html>
